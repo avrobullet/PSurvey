@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Game_Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/Phaser.js"></script>
+    <script type="text/javascript" src="../js/AttributeBars.js"></script>
+    <script type="text/javascript" src="../js/Main.js"></script>
+    <script type="text/javascript" src="../js/ObjectiveLayer.js"></script>
+
+    <style>
+        .pauseScreen
+        {
+            background-color:   rgba(255,255,255,0.5);
+            width:              100vw;
+            height:             85vh;
+            display:            flex;
+            justify-content:    flex-end;
+        }
+        .barScreen
+        {
+            background-color:   aqua;
+            width:              100vw;
+            height:             15vh;
+            margin-top:         85vh;
+            display:            flex;
+        }
+        .objectiveScreen
+        {
+            background-color:   rgba(255,255,255,0.5);
+            width:              100vw;
+            height:             100vh;
+        }
+        .attributeBarContainer
+        {
+            width:              33.33%;
+            background-color:   aquamarine;
+        }
+        .attributeBarAnimate
+        {
+            background-color:   coral;
+            width:              50%;
+            height:             100%;
+
+        }
+        .button
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            background-color:   crimson;
+            text-align:         center;
+            color:              white;
+            border:             none;
+            font-size:          20px;
+        }
+        .startButton
+        {
+            position:           fixed;
+            bottom:             5vh;
+            left:               50%;
+            transform:          translate(-50%, 0%);
+            padding:            2vh 5vw 2vh 5vw;
+        }
+        .button:active
+        {
+            background-color:   #b91133;
+        }
+        .button:focus
+        {
+            outline:            none;
+        }
+        .heading
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            text-align:         center;
+            color:              white;
+            padding-left:       15px;
+            padding-right:      15px;
+            font-size:          35px;
+        }
+        .centerBoxHorizontal
+        {
+            margin-right:       50px;
+            position:           relative;
+            height:             100vh;
+            left:               50%;
+            transform:          translate(-50%, 0%);
+            background-color:   coral;
+            box-sizing:         border-box;
+            border:             solid thick #f1f1f1;
+
+        }
+        .objectiveBody
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            text-align:         justify;
+            color: #646464;
+        }
+        .textBox
+        {
+            border:             solid thin white;
+            background-color:   rgba(255,255,255,0.5);
+            padding: 2%;
+            margin-left:        15vw;
+            margin-right:       15vw;
+        }
+        html,body
+        {
+            padding:            0;
+            margin:             0;
+            border:             0;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="container" style="position: relative;">
+
+        <!-- The game layer of the page -->
+        <div id="gameLayer" style="position: absolute; z-index: 1">
+
+        </div>
+
+        <!-- The pause screen layer of the page -->
+        <div id="buttonLayer" class="pauseScreen" style="display: none; position: absolute; z-index: 2;">
+            <button class="button" onclick="togglePause()">Unpause game</button>
+            <button class="button" onclick="attributeBars.changeAttributeBar_1(10)">Increment</button>
+            <button class="button" onclick="attributeBars.changeAttributeBar_1(-10)">Decrement</button>
+        </div>
+
+        <!-- The attribute bar layer of the page -->
+        <div id="barLayer" class="barScreen" style="position: absolute; z-index: 3;">
+            <!--- Defines 3 attribute bars. The container holds the bar and the animate is what changes-->
+            <div id="attributeBar_1" class="attributeBarContainer">
+                <div id="attributeBar_1_animate" class="attributeBarAnimate"></div>
+            </div>
+
+            <div id="attributeBar_2" class="attributeBarContainer">
+                <div id="attributeBar_2_animate" class="attributeBarAnimate"></div>
+            </div>
+
+            <div id="attributeBar_3" class="attributeBarContainer">
+                <div id="attributeBar_3_animate" class="attributeBarAnimate"></div>
+            </div>
+        </div>
+
+        <!-- Overlays a screen that contains the objective of hte level -->
+        <div id="objectiveLayer" class="objectiveScreen" style="display: none; position: absolute; z-index: 4;">
+            <div id="objectiveWrapper" class="centerBoxHorizontal">
+                <div id="levelNumber" class="heading" style="margin-top: 2%"></div>
+                <div id="levelName" class="heading" style="font-size: 20px; margin-bottom: 5vh">Objective</div>
+
+                <!-- Box to contain the text of the objective screen -->
+                <div if="textWrapper" class="textBox">
+                    <div id="objectiveBody" class="objectiveBody"></div>
+                </div>
+                <div id="startButton" class="startButton button" onclick="startGame()">Start</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

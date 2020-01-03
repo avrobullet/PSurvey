@@ -1,0 +1,1 @@
+Project dedicated towards the development of patient/participant app interface designed to record and store information onto a private server.
