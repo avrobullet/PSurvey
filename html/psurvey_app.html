@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=""UTF-8">
+    <title>PSurvey</title>
+
+    <style>
+        .mainScreen
+        {
+            border:             solid thin #d9b382;
+            background-color:   rgba(255,255,255,0.5);
+            padding: 2%;
+            margin-left:        15vw;
+            margin-right:       15vw;
+            display:            table;
+        }
+        .mainTitle
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            text-align:         center;
+            color:              #d9b382;
+            padding-left:       15px;
+            padding-right:      15px;
+            font-size:          35px;
+        }
+        .mainIntroduction
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            text-align:         center;
+            color:              #d9b382;
+            padding-left:       15px;
+            padding-right:      15px;
+            font-size:          25px;
+        }
+        .button
+        {
+            text-align:         center;
+            vertical-align:     bottom;
+        }
+        .confirmButton
+        {
+            padding:            2vh;
+            width:              100%;
+            font-family:        Verdana,Geneva,sans-serif;
+            background-color:   crimson;
+            color:              white;
+            border:             none;
+            font-size:          30px;
+        }
+        .nextButton
+        {
+
+        }
+        .previousButton
+        {
+
+        }
+        .exitButton
+        {
+
+        }
+        html, body
+        {
+            min-height: 100%;
+            background-image: radial-gradient(circle, #ffac37, #ffb937);
+        }
+    </style>
+</head>
+<body>
+    <div id="mainScreenLayer" class="mainScreen">
+        <!-- Greeting Title of the first page -->
+        <div id="mainTitleLayer" class="mainTitle">Hello!</div>
+        <!-- Introducing patients to the app -->
+        <!-- Mayhaps read the contents from a .txt file...ß -->
+        <div id="mainIntroductionLayer" class="mainIntroduction">
+            <p>A poem is a collection of spoken or written words that expresses ideas or emotions in a powerfully vivid and imaginative style. A poem is comprised of a particular rhythmic and metrical pattern. In fact, it is a literary technique that is different from prose or ordinary speech, as it is either in metrical pattern or in free verse. Writers or poets express their emotions through this medium more easily, as they face difficulty when expressing through some other medium. It serves the purpose of a light to take the readers towards the right path. Also, sometimes it teaches them a moral lesson through sugar-coated language.</p>
+        </div>
+        <!-- Begin the questions -->
+        <div id="confirmButtonLayer" class="button">
+            <button class="button confirmButton">Let's Go!</button>
+        </div>
+    </div>
+</body>
+</html>
