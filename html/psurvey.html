@@ -1,164 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Game_Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="../js/Phaser.js"></script>
-    <script type="text/javascript" src="../js/AttributeBars.js"></script>
-    <script type="text/javascript" src="../js/Main.js"></script>
-    <script type="text/javascript" src="../js/ObjectiveLayer.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="../js/pmain.js"></script>
+        <title>PSurvey</title>
 
-    <style>
-        .pauseScreen
-        {
-            background-color:   rgba(255,255,255,0.5);
-            width:              100vw;
-            height:             85vh;
-            display:            flex;
-            justify-content:    flex-end;
-        }
-        .barScreen
-        {
-            background-color:   aqua;
-            width:              100vw;
-            height:             15vh;
-            margin-top:         85vh;
-            display:            flex;
-        }
-        .objectiveScreen
-        {
-            background-color:   rgba(255,255,255,0.5);
-            width:              100vw;
-            height:             100vh;
-        }
-        .attributeBarContainer
-        {
-            width:              33.33%;
-            background-color:   aquamarine;
-        }
-        .attributeBarAnimate
-        {
-            background-color:   coral;
-            width:              50%;
-            height:             100%;
+        <style>
+            html, body
+            {
+                min-height: 100%;
+                background-image: radial-gradient(circle, #ffac37, #ffb937);
+            }
+            .mainScreen
+            {
+                border:             solid thin #d9b382;
+                background-color:   rgba(255,255,255,0.5);
+                padding:            2%;
+                margin-left:        15vw;
+                margin-right:       15vw;
+                display:            table;
+            }
+            .layerHidden
+            {
+                display: none;
+            }
+            .layerVisible
+            {
+                display: block;
+            }
+            .layerAttribute
+            {
+                font-family:        Verdana,Geneva,sans-serif;
+                text-align:         center;
+                color:              #d9b382;
+                padding-left:       15px;
+                padding-right:      15px;
+            }
+            .layerTitle
+            {
+                font-size:          35px;
+            }
+            .layerIntroduction
+            {
+                font-size:          25px;
+            }
+            .layerAnswer
+            {
+                font-size:          40px;
+            }
+            .layerQuestion
+            {
+                font-size:          50px;
+            }
 
-        }
-        .button
-        {
-            font-family:        Verdana,Geneva,sans-serif;
-            background-color:   crimson;
-            text-align:         center;
-            color:              white;
-            border:             none;
-            font-size:          20px;
-        }
-        .startButton
-        {
-            position:           fixed;
-            bottom:             5vh;
-            left:               50%;
-            transform:          translate(-50%, 0%);
-            padding:            2vh 5vw 2vh 5vw;
-        }
-        .button:active
-        {
-            background-color:   #b91133;
-        }
-        .button:focus
-        {
-            outline:            none;
-        }
-        .heading
-        {
-            font-family:        Verdana,Geneva,sans-serif;
-            text-align:         center;
-            color:              white;
-            padding-left:       15px;
-            padding-right:      15px;
-            font-size:          35px;
-        }
-        .centerBoxHorizontal
-        {
-            margin-right:       50px;
-            position:           relative;
-            height:             100vh;
-            left:               50%;
-            transform:          translate(-50%, 0%);
-            background-color:   coral;
-            box-sizing:         border-box;
-            border:             solid thick #f1f1f1;
+            .buttons button
+            {
+                cursor:             pointer;
+                padding:            4vh;
+                font-family:        Verdana,Geneva,sans-serif;
+                color:              white;
+                border:             none;
+            }
+            /* Prevent double borders */
+            .buttons button:not(:last-child)
+            {
+                border-right: none;
+            }
+            /* Clear floats (clearfix hack) */
+            .buttons:after
+            {
+                content: "";
+                clear: both;
+            }
+            /* Add a background color on hover */
+            .buttons button:hover
+            {
+                background-color: #ffb380;
+            }
+            .confirmButton
+            {
+                width:              50%;
+                background-color:   crimson;
+                font-size:          30px;
+            }
+            .nextButton
+            {
+                width:              20%;
+                background-color:   crimson;
+                font-size:          30px;
+            }
+            .prevButton
+            {
+                width:              20%;
+                background-color:   crimson;
+                font-size:          30px;
+            }
+            .introButton
+            {
+                margin:             50px;
+                width:              20%;
+                background-color:   crimson;
+                font-size:          30px;
+            }
+            .exitButton
+            {
 
-        }
-        .objectiveBody
-        {
-            font-family:        Verdana,Geneva,sans-serif;
-            text-align:         justify;
-            color: #646464;
-        }
-        .textBox
-        {
-            border:             solid thin white;
-            background-color:   rgba(255,255,255,0.5);
-            padding: 2%;
-            margin-left:        15vw;
-            margin-right:       15vw;
-        }
-        html,body
-        {
-            padding:            0;
-            margin:             0;
-            border:             0;
-        }
-
-    </style>
-
-</head>
+            }
+        </style>
+    </head>
 <body>
-    <div id="container" style="position: relative;">
-
-        <!-- The game layer of the page -->
-        <div id="gameLayer" style="position: absolute; z-index: 1">
-
-        </div>
-
-        <!-- The pause screen layer of the page -->
-        <div id="buttonLayer" class="pauseScreen" style="display: none; position: absolute; z-index: 2;">
-            <button class="button" onclick="togglePause()">Unpause game</button>
-            <button class="button" onclick="attributeBars.changeAttributeBar_1(10)">Increment</button>
-            <button class="button" onclick="attributeBars.changeAttributeBar_1(-10)">Decrement</button>
-        </div>
-
-        <!-- The attribute bar layer of the page -->
-        <div id="barLayer" class="barScreen" style="position: absolute; z-index: 3;">
-            <!--- Defines 3 attribute bars. The container holds the bar and the animate is what changes-->
-            <div id="attributeBar_1" class="attributeBarContainer">
-                <div id="attributeBar_1_animate" class="attributeBarAnimate"></div>
+    <!-- Intro screen -->
+    <div id="mainIntroLayer" class="mainScreen layerVisible">
+            <!-- Greeting Title of the first page -->
+            <div id="mainIntroTitle" class="layerTitle layerAttribute">Welcome!</div>
+            <!-- Introducing patients to the app -->
+            <!-- Mayhaps read the contents from a .txt file...ß -->
+            <div id="mainIntroParagraph" class="layerIntroduction layerAttribute">
+                <p>A poem is a collection of spoken or written words that expresses ideas or
+                    emotions in a powerfully vivid and imaginative style. A poem is comprised
+                    of a particular rhythmic and metrical pattern. In fact, it is a literary
+                    technique that is different from prose or ordinary speech, as it is either
+                    in metrical pattern or in free verse. Writers or poets express their emotions
+                    through this medium more easily, as they face difficulty when expressing
+                    through some other medium. It serves the purpose of a light to take the readers
+                    towards the right path. Also, sometimes it teaches them a moral lesson through
+                    sugar-coated language.</p>
             </div>
-
-            <div id="attributeBar_2" class="attributeBarContainer">
-                <div id="attributeBar_2_animate" class="attributeBarAnimate"></div>
-            </div>
-
-            <div id="attributeBar_3" class="attributeBarContainer">
-                <div id="attributeBar_3_animate" class="attributeBarAnimate"></div>
+            <!-- Button to begin the questions -->
+            <div id="introButtonLayer" class="buttons" style="text-align: center">
+                <button class="buttons confirmButton" onclick="beginQuestions()">Let's Go!</button>
             </div>
         </div>
-
-        <!-- Overlays a screen that contains the objective of hte level -->
-        <div id="objectiveLayer" class="objectiveScreen" style="display: none; position: absolute; z-index: 4;">
-            <div id="objectiveWrapper" class="centerBoxHorizontal">
-                <div id="levelNumber" class="heading" style="margin-top: 2%"></div>
-                <div id="levelName" class="heading" style="font-size: 20px; margin-bottom: 5vh">Objective</div>
-
-                <!-- Box to contain the text of the objective screen -->
-                <div if="textWrapper" class="textBox">
-                    <div id="objectiveBody" class="objectiveBody"></div>
-                </div>
-                <div id="startButton" class="startButton button" onclick="startGame()">Start</div>
+    <!-- Question(s) screen (keep it hidden until prompted) -->
+    <div id="mainQuestionLayer" class="mainScreen layerHidden">
+            <!-- Question number -->
+            <div id="mainQuestionTitle" class="layerTitle layerAttribute">Question#</div>
+            <!-- Question in its written form (the question itself) -->
+            <div id="mainQuestionParagraph" class="layerQuestion layerAttribute">
+                <p>MYWIFE.exe</p>
             </div>
-
+            <!-- Buttons to go back to intro, to previous or next question -->
+            <div id="questionButtonLayer" class="buttons" style="text-align: center">
+                <button id="nextButton" class="buttons nextButton" onclick="nextButtonPress()">Next!</button>
+                <button id="introButton" class="buttons introButton" onclick="introReturn()">Intro!</button>
+                <button id="prevButton" class="buttons prevButton" onclick="prevButtonPress()">Previous!</button>
+            </div>
         </div>
-    </div>
 </body>
 </html>
