@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/pmain.js"></script>
+    <title>PSurvey</title>
+
+    <style>
+        html, body
+        {
+            min-height: 100%;
+            background-image: radial-gradient(circle, #ffac37, #ffb937);
+        }
+        .mainScreen
+        {
+            border:             solid thin #d9b382;
+            background-color:   rgba(255,255,255,0.5);
+            padding:            2%;
+            margin-left:        15vw;
+            margin-right:       15vw;
+            display:            table;
+        }
+        .layerHidden
+        {
+            display: none;
+        }
+        .layerVisible
+        {
+            display: block;
+        }
+        .layerAttribute
+        {
+            font-family:        Verdana,Geneva,sans-serif;
+            text-align:         center;
+            color:              #d9b382;
+            padding-left:       15px;
+            padding-right:      15px;
+        }
+        .layerTitle
+        {
+            font-size:          35px;
+        }
+        .layerIntroduction
+        {
+            font-size:          25px;
+        }
+        .layerAnswer
+        {
+            font-size:          40px;
+        }
+        .layerQuestion
+        {
+            font-size:          50px;
+        }
+
+        .buttons button
+        {
+            cursor:             pointer;
+            padding:            4vh;
+            font-family:        Verdana,Geneva,sans-serif;
+            color:              white;
+            border:             none;
+        }
+        /* Prevent double borders */
+        .buttons button:not(:last-child)
+        {
+            border-right: none;
+        }
+        /* Clear floats (clearfix hack) */
+        .buttons:after
+        {
+            content: "";
+            clear: both;
+        }
+        /* Add a background color on hover */
+        .buttons button:hover
+        {
+            background-color: #ffb380;
+        }
+        .confirmButton
+        {
+            width:              50%;
+            background-color:   crimson;
+            font-size:          30px;
+        }
+        .nextButton
+        {
+            width:              20%;
+            background-color:   crimson;
+            font-size:          30px;
+        }
+        .prevButton
+        {
+            width:              20%;
+            background-color:   crimson;
+            font-size:          30px;
+        }
+        .introButton
+        {
+            margin:             50px;
+            width:              20%;
+            background-color:   crimson;
+            font-size:          30px;
+        }
+        .exitButton
+        {
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Intro screen -->
+    <div id="mainIntroLayer" class="mainScreen layerVisible">
+        <!-- Greeting Title of the first page -->
+        <div id="mainIntroTitle" class="layerTitle layerAttribute">Welcome!</div>
+        <!-- Introducing patients to the app -->
+        <!-- Mayhaps read the contents from a .txt file...ß -->
+        <div id="mainIntroParagraph" class="layerIntroduction layerAttribute">
+            <p>A poem is a collection of spoken or written words that expresses ideas or
+                emotions in a powerfully vivid and imaginative style. A poem is comprised
+                of a particular rhythmic and metrical pattern. In fact, it is a literary
+                technique that is different from prose or ordinary speech, as it is either
+                in metrical pattern or in free verse. Writers or poets express their emotions
+                through this medium more easily, as they face difficulty when expressing
+                through some other medium. It serves the purpose of a light to take the readers
+                towards the right path. Also, sometimes it teaches them a moral lesson through
+                sugar-coated language.</p>
+        </div>
+        <!-- Button to begin the questions -->
+        <div id="introButtonLayer" class="buttons" style="text-align: center">
+            <button class="buttons confirmButton" onclick="beginQuestions()">Let's Go!</button>
+        </div>
+    </div>
+    <!-- Question(s) screen (keep it hidden until prompted) -->
+    <div id="mainQuestionLayer" class="mainScreen layerHidden">
+        <!-- Question number -->
+        <div id="mainQuestionTitle" class="layerTitle layerAttribute">Question#</div>
+        <!-- Question in its written form (the question itself) -->
+        <div id="mainQuestionParagraph" class="layerQuestion layerAttribute">
+            <p>MYWIFE.exe</p>
+        </div>
+        <!-- Buttons to go back to intro, to previous or next question -->
+        <div id="questionButtonLayer" class="buttons" style="text-align: center">
+            <button id="nextButton" class="buttons nextButton" onclick="nextButtonPress()">Next!</button>
+            <button id="introButton" class="buttons introButton" onclick="introReturn()">Intro!</button>
+            <button id="prevButton" class="buttons prevButton" onclick="prevButtonPress()">Previous!</button>
+        </div>
+    </div>
+</body>
+</html>
