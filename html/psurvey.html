@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="../js/pmain.js"></script>
+        <script type="text/javascript" src="../js/pquestioncounter.js"></script>
         <title>PSurvey</title>
 
         <style>
@@ -17,8 +18,7 @@
                 border:             solid thin #d9b382;
                 background-color:   rgba(255,255,255,0.5);
                 padding:            2%;
-                margin-left:        15vw;
-                margin-right:       15vw;
+                margin-outside: 2vw;
                 display:            table;
             }
             .layerHidden
@@ -103,6 +103,12 @@
                 background-color:   crimson;
                 font-size:          30px;
             }
+            .answerButton
+            {
+                width:              20%;
+                background-color:   purple;
+                font-size:          30px;
+            }
             .exitButton
             {
 
@@ -134,18 +140,27 @@
         </div>
     <!-- Question(s) screen (keep it hidden until prompted) -->
     <div id="mainQuestionLayer" class="mainScreen layerHidden">
-            <!-- Question number -->
-            <div id="mainQuestionTitle" class="layerTitle layerAttribute">Question#</div>
-            <!-- Question in its written form (the question itself) -->
-            <div id="mainQuestionParagraph" class="layerQuestion layerAttribute">
-                <p>MYWIFE.exe</p>
-            </div>
-            <!-- Buttons to go back to intro, to previous or next question -->
-            <div id="questionButtonLayer" class="buttons" style="text-align: center">
-                <button id="nextButton" class="buttons nextButton" onclick="nextButtonPress()">Next!</button>
-                <button id="introButton" class="buttons introButton" onclick="introReturn()">Intro!</button>
-                <button id="prevButton" class="buttons prevButton" onclick="prevButtonPress()">Previous!</button>
+        <!-- Question in its written form (the question itself) -->
+        <div id="mainQuestionParagraph" class="layerQuestion layerAttribute">
+            <div id="question1">Question 1</div>
+            <div id="question2" class="layerHidden">Question 2</div>
+            <div id="question3" class="layerHidden">Question 3</div>
+            <div id="question4" class="layerHidden">Question 4</div>
+            <div id="question5" class="layerHidden">Question 5</div>
+        </div>
+        <!-- Where the answer will be selected -->
+        <div id="answerSegment">
+            <!-- Button to confirm selected answer -->
+            <div id="answerButtonLayer" class="buttons" style="text-align: center">
+                <button id="answerButton" class="buttons answerButton" onclick="answerButtonPress()">Confirm</button>
             </div>
         </div>
+        <!-- Buttons to go back to intro, to previous or next question -->
+        <div id="questionButtonLayer" class="buttons" style="text-align: center">
+            <button id="prevButton" class="buttons prevButton" onclick="prevButtonPress()">Previous!</button>
+            <button id="introButton" class="buttons introButton" onclick="introReturn()">Intro!</button>
+            <button id="nextButton" class="buttons nextButton" onclick="nextButtonPress()">Next!</button>
+        </div>
+    </div>
 </body>
 </html>
