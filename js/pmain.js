@@ -1,3 +1,6 @@
+/*Keeps track of which question user is on*/
+var questionMatch = new pquestioncounter();
+
 /*Beginning questioning*/
 function beginQuestions()
 {
@@ -5,6 +8,8 @@ function beginQuestions()
     document.getElementById("mainQuestionLayer").style.display = "block";
     /*Hide intro HTML layer*/
     document.getElementById("mainIntroLayer").style.display = "none";
+    /*Go to first question*/
+    questionTrack();
 }
 /*Return to introductions*/
 function introReturn()
@@ -14,17 +19,19 @@ function introReturn()
     /*Show intro HTML layer*/
     document.getElementById("mainIntroLayer").style.display = "block";
 }
+/*Confirm answer*/
+function answerButtonPress()
+{
+    //Write in a file.txt the answer
+}
 /*Testing prev button*/
 function prevButtonPress()
 {
-    var elem = document.getElementById("prevButton");
-    if (elem.value=="Previous!") elem.value = "Hello There!";
-    else elem.value = "Previous!";
+    //Go to prev question
+    prevQuestion()
 }
 /*Testing next button*/
-function nextButtonPress()
-{
-    var elem = document.getElementById("nextButton");
-    if (elem.value=="Next!") elem.value = "Hello There!";
-    else elem.value = "Next!";
+function nextButtonPress() {
+    //Go to prev question
+    nextQuestion();
 }
